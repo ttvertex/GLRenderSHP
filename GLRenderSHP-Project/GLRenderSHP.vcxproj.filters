@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="shapelib\dbfopen.c">
+      <Filter>shapelib</Filter>
+    </ClCompile>
+    <ClCompile Include="shapelib\safileio.c">
+      <Filter>shapelib</Filter>
+    </ClCompile>
+    <ClCompile Include="shapelib\shpopen.c">
+      <Filter>shapelib</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GLRenderSHP.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ShapeFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="shapelib">
+      <UniqueIdentifier>{435e9b9e-3de5-4d46-a4cf-a5a3253c40d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{72bf8b31-097a-4bef-b18e-8b2fdc20799e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="shapelib\shapefil.h">
+      <Filter>shapelib</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vectors.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ShapeFile.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.txt" />
+  </ItemGroup>
+</Project>

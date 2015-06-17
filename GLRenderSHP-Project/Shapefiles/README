@@ -1,0 +1,20 @@
+This archive contains the Shapefile-formatted version of the
+
+	Frida: Free Vector-Geodata Osnabrück
+
+Class attributes are in separate .dbf-files and can be joined to
+the .shp-files via corresponding IDs.
+
+Finally there is a .thuban-file for displaying all shapefiles
+quickly. You need to have Thuban installed on your system for this.
+
+
+The contents of this archive is not regarded as the sources,
+visit the homepage to get the actual source files.
+
+For the license see file COPYING.
+
+Read here for more:
+
+	frida.intevation.org
+	thuban.intevation.org

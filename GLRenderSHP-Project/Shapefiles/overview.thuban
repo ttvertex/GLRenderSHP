@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE session SYSTEM "thuban.dtd">
+<session title="Frida: Free Vector Geodata Osnabrueck">
+	<map title="Osnabrueck">
+		<layer title="gruenflaechen" filename="gruenflaechen.shp" fill="#00ff7f" stroke="#000000" stroke_width="1"/>
+		<layer title="gewaesserflaechen" filename="gewaesserflaechen.shp" fill="#3232cc" stroke="#000000" stroke_width="1"/>
+		<layer title="gewaesserlinien" filename="gewaesserlinien.shp" fill="None" stroke="#3232cc" stroke_width="1"/>
+		<layer title="poi" filename="poi.shp" fill="None" stroke="#000000" stroke_width="1"/>
+		<layer title="strassen" filename="strassen.shp" fill="None" stroke="#000000" stroke_width="1"/>
+	</map>
+</session>
