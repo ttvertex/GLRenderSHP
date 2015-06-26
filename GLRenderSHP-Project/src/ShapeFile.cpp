@@ -15,9 +15,13 @@ Using ShapeLib version 1.3
 
 using namespace std;
 
+int ShapeFile::shpCount = 0;
+
 ShapeFile::ShapeFile(const char* fileName){
 	this->filename = string(fileName);
 	init();
+
+	shpID = ShapeFile::shpCount;
 }
 
 ShapeFile::~ShapeFile(){
@@ -29,6 +33,8 @@ ShapeFile::~ShapeFile(){
 	Open, read the shapefile data to an array of Entities, then close the files.
 */
 void ShapeFile::init(){
+	ShapeFile::shpCount++;
+	cout << ShapeFile::shpCount << endl;
 
 	//////////// OPEN SHP
 	hSHP = SHPOpen((filename + ".shp").c_str(), "rb");
@@ -59,20 +65,47 @@ void ShapeFile::init(){
 	cout << "ShapeType= " << typeStr(shpType) << endl;
 	cout << "boundaries= " << boundBoxMin << ", " << boundBoxMax << endl;
 
-	printDBFHeader(10);
+	//printDBFHeader(10);
 
 	//read entities and store them into a Vector
 	cout << "Reading entities...." << endl;
 	SHPObject *psShape;
-	for (int i = 0; i < nEntities; i++){
+	for (int i = 0; i < nEntities; i++)
+	{
 		psShape = SHPReadObject(hSHP, i); // le do arquivo
-		Entity e;
-		for (int j = 0; j < psShape->nVertices; j++)
-		{
-			e.points.push_back(vec3(psShape->padfX[j], psShape->padfY[j], psShape->padfZ[j]));
+		if (psShape == NULL)
+			return;
+
+		//Pozzer
+		//informacoes de cada shape
+		//printf("\nEntities = %d\n", psShape->nVertices);
+		//printf("\nParts = %d\n", psShape->nParts);
+
+		//
+		if (shpType == SHPT_POINT || shpType == SHPT_POINTZ){
+			Entity e;
+			e.points.push_back(vec3(psShape->padfX[0], psShape->padfY[0], psShape->padfZ[0]));
+			entities.push_back(e);
 		}
-		SHPDestroyObject(psShape); // deleta o objeto
-		entities.push_back(e);
+		else{
+			//Pozzer
+			//indice do vetor de shapes. Faz a leitura de traz para frente
+			int idx = psShape->nVertices - 1;
+			//Pozzer
+			//para cada parte que compoe cada shape, determina o numero de primitivas (nParts)
+			for (int i = psShape->nParts - 1; i >= 0; i--)
+			{
+				Entity e;
+				//printf("\nPart[%d] = %d ",i, psShape->panPartStart[i]);
+				for (; idx >= psShape->panPartStart[i]; idx--)
+				{
+					//printf("\n %f %f %f %f", psShape->padfX[j], psShape->padfY[j], psShape->padfZ[j], psShape->padfM );
+					e.points.push_back(vec3(psShape->padfX[idx], psShape->padfY[idx], psShape->padfZ[idx]));
+				}
+				entities.push_back(e);
+			}
+			SHPDestroyObject(psShape); // deleta o objeto
+		}
 	}
 	cout << "Entities successfully read: " << entities.size() << endl << endl;
 
@@ -87,6 +120,12 @@ void ShapeFile::init(){
 	De acordo com o tipo da primitva da Shape, aciona o glBegin correspondente.
 	*/
 void ShapeFile::beginPrimitive(int shpType){
+	if (shpID == 1)
+		glColor3f(1.0f, 0.0f, 0.0f);
+	else if (shpID == 2)
+		glColor3f(0.0f, 1.0f, 0.0f);
+	else
+		glColor3f(0.0f, 0.0f, 1.0f);
 	if (shpType == SHPT_POINT || shpType == SHPT_POINTZ){ //Point | PointZ
 		glColor3f(0.0, 0.0, 1.0);
 		glEnable(GL_POINT_SMOOTH);

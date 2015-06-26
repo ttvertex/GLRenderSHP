@@ -14,3 +14,5 @@ Fixed memory leak. Data is read to a DS separated from shapelib.
 Revision History
 @2015-05-27 version 1.0
 Basic 2D rendering for ShapeFiles. Shapefile functionalities encapslated into the ShaepeFile class.
+@2015-06-26 
+Fix for shapefiles with inner rings

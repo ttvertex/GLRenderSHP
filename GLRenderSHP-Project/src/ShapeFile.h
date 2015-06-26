@@ -29,6 +29,8 @@ public:
 	void render();
 	static const char* typeStr(int type);
 	vec4 getBoundaries();
+
+	static int shpCount;
 private:
 	vec2 boundBoxMin, boundBoxMax;
 	int nEntities, shpType;
@@ -39,4 +41,6 @@ private:
 
 	void init();
 	void beginPrimitive(int shpType);
+
+	int shpID;
 };

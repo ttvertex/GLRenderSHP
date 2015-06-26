@@ -85,9 +85,8 @@ int main(int argc, char** argv)
 	initializeGL();
 
 	g_Shapefiles.push_back(*(new ShapeFile("Shapefiles\\strassen"))); //line
-	//g_Shapefiles.push_back(*(new ShapeFile("Shapefiles\\poi"))); //point
-	//g_Shapefiles.push_back(*(new ShapeFile("Shapefiles\\gruenflaechen"))); //polygon
-	//g_Shapefiles.push_back(*(new ShapeFile("Shapefiles\\polygon"))); //polygon
+	g_Shapefiles.push_back(*(new ShapeFile("Shapefiles\\poi"))); //point
+	g_Shapefiles.push_back(*(new ShapeFile("Shapefiles\\gruenflaechen"))); //polygon
 	shpBoundaries = g_Shapefiles[0].getBoundaries();
 
 	glutKeyboardFunc(keyCB);
